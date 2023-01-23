@@ -17,6 +17,7 @@ def get_unique_job_types(path: str) -> List[str]:
     for job in jobs_list:
         if job["job_type"] not in job_types:
             job_types.append(job["job_type"])
+    return job_types
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
