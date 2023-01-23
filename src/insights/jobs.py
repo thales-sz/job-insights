@@ -11,9 +11,6 @@ def read(path: str) -> List[Dict]:
     return jobs_list
 
 
-raise NotImplementedError
-
-
 def get_unique_job_types(path: str) -> List[str]:
     """Checks all different job types and returns a list of them
 
