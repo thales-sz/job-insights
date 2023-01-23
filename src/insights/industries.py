@@ -6,8 +6,9 @@ def get_unique_industries(path: str) -> List[str]:
     jobs_list = read(path)
     industries = []
     for job in jobs_list:
-        if job["industry"] not in industries:
-            industries.append(job["industry"])
+        if len(job["industry"]) > 0:
+            if job["industry"] not in industries:
+                industries.append(job["industry"])
     return industries
 
 
