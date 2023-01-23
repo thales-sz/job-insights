@@ -22,7 +22,7 @@ def get_unique_industries(path: str) -> List[str]:
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
     """Filters a list of jobs by industry
 
-    Parameters
+    Parameter
     ----------
     jobs : list
         List of jobs to be filtered
