@@ -2,11 +2,20 @@ from typing import Union, List, Dict
 from .jobs import read
 
 
+def is_numeric_value(value) -> bool:
+    salary_types = [int, str]
+    if type(value) not in salary_types:
+        return False
+    if isinstance(value, str) and not value.isnumeric():
+        return False
+    return True
+
+
 def get_max_salary(path: str) -> int:
     jobs_list = read(path)
     max_salary = int()
     for job in jobs_list:
-        if len(job["max_salary"]) > 0 and job["max_salary"] != 'invalid':
+        if is_numeric_value(job["max_salary"]):
             if max_salary < int(job["max_salary"]):
                 max_salary = int(job["max_salary"])
     return max_salary
@@ -16,7 +25,7 @@ def get_min_salary(path: str) -> int:
     jobs_list = read(path)
     min_salary = get_max_salary(path)
     for job in jobs_list:
-        if len(job["min_salary"]) > 0 and job["min_salary"] != 'invalid':
+        if is_numeric_value(job["min_salary"]):
             if min_salary > int(job["min_salary"]):
                 min_salary = int(job["min_salary"])
     return min_salary
@@ -31,10 +40,7 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         raise ValueError
     if min > max:
         raise ValueError
-    if int(salary) <= max and int(salary) >= min:
-        return True
-    else:
-        return False
+    return int(salary) <= max and int(salary) >= min
 
 
 def filter_by_salary_range(
